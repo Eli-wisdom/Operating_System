@@ -123,7 +123,7 @@ ___
 
 **Our Code is well commented clarity of each line. 
 Please check read the beginning comment in each file to know that algorithm it is. 
-Thank you. **
+Thank you.**
 
 
  
