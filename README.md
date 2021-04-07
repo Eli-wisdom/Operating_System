@@ -1,4 +1,4 @@
-# Operating_System
+# Operating System
 ___
 
 We tackled Memory Management techniques and CPU Scheduling Algorithms
