@@ -2,8 +2,12 @@ import java.util.Scanner;
 
 public class roundR {
     public static void main(String[]  args){
-        int i,j,n,t,max;
-        int[] bu=new int[10];
+        int i,//lOOP COUNTER
+                j,//LOOP COUNTER
+                n,//NUMBER OF PROCESS
+                t,//SIZE OF SLIDES
+                max;
+        int[] bu=new int[10];//Burst Time
         int[] wa=new int[10];
         int[] tat=new int[10];
         int[] ct=new int[10];

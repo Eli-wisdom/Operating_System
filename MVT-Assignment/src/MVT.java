@@ -13,7 +13,7 @@ public class MVT {
                 exFrag,//externalfagmentation
                 nV = 0;//loop
 
-        int[] availableMemory = new int[10];//This array holds the available Memory
+        int[] MemoryR = new int[10];//This array holds the available Memory
 
 
         char ch = 'y';//character to regulate yes or no to continue the loop
@@ -33,14 +33,14 @@ public class MVT {
             //display the output below
             System.out.println("\nEnter memory required for process " + (iV + 1) + " (in Bytes) -- ");
             //accepting input for availableMemory
-            availableMemory[iV] = input.nextInt();
+            MemoryR[iV] = input.nextInt();
 
-            if (availableMemory[iV] <= exFrag) {
+            if (MemoryR[iV] <= exFrag) {
                 //display the output below
                 System.out.println("\nMemory is allocated for Process " + (iV + 1) + " ");
 
                 //calculating the external fragmentation
-                exFrag = exFrag - availableMemory[iV];
+                exFrag = exFrag - MemoryR[iV];
             } else {
                 //display the output below
                 System.out.println("\nMemory is Full");
@@ -57,7 +57,7 @@ public class MVT {
         System.out.println("\n\n\tPROCESS\t\t MEMORY ALLOCATED ");
         //loop to display the output of the result
         for (iV = 0; iV < nV; iV++)
-            System.out.println("\n \t" + (iV + 1) + "\t\t\t\t" + availableMemory[iV] + "");
+            System.out.println("\n \t" + (iV + 1) + "\t\t\t\t" + MemoryR[iV] + "");
         System.out.println("\n\nTotal Memory Allocated is " + (memoryAvailableV - exFrag) + "");
         System.out.println("\nTotal External Fragmentation is " + exFrag + "");
 

@@ -1,13 +1,22 @@
+/**
+ * First Come First Serve (FCFS) is an operating system
+ * scheduling algorithm that automatically executes queued
+ * requests and processes in order of their arrival. It is the easiest
+ * and simplest CPU scheduling algorithm.
+ */
+
 import java.util.Scanner;
 
 public class FCFS {
     public static void main(String[] args){
 
-        int  i, n;
-        int[] bt = new int[20];
-        int[] wt = new int[20];
-        int[] tat = new int[20];
+        int  i, //loop counter
+                n;//Number of processes.
+        int[] bt = new int[20]; //Burst Time
+        int[] wt = new int[20];// Waiting time
+        int[] tat = new int[20]; //turnaround Time
         float wtavg, tatavg;
+
         Scanner input = new Scanner(System.in);
         System.out.println("\nEnter the number of processes -- ");
 
