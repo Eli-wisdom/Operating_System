@@ -43,7 +43,7 @@ ___
 CPU Scheduling is a process of determining which process will own CPU for execution while another process is on hold. The main task of CPU scheduling is to make sure that whenever the CPU remains idle, the OS at least select one of the processes available in the ready queue for execution. The selection process will be carried out by the CPU scheduler. It selects one of the processes in memory that are ready for execution.
 
 
-___
+
 
 **Types of CPU Scheduling**
 
@@ -63,9 +63,8 @@ The process that keeps the CPU busy will release the CPU either by switching con
 terminating. It is the only method that can be used for various hardware platforms. 
 That's because it doesn't need special hardware (for example, a timer) like preemptive scheduling.
 
-___
 
-## Types of CPU scheduling Algorithm
+**Types of CPU scheduling Algorithm**
 
 - FCFS ----First Come First Serve 
 
@@ -76,6 +75,7 @@ ___
 - Priority 
 
 - Multiple-Level Queues Scheduling
+
 ___
 
 ## Deadlock Management Techniques
