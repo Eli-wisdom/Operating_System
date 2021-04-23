@@ -3,11 +3,11 @@
 ## First Come First Serve (FCFS) is an operating system scheduling algorithm that automatically executes queued requests and processes in order of their arrival. It is the easiest and simplest CPU scheduling algorithm.
 
 ## INPUT 
-**n**
-This holds the number of process.
+** n **
+- This holds the number of process.
 
-**i**
-This holds the burst time for that particular process.
+** i **
+- This holds the burst time for that particular process.
 
 
 ## PROCESS
