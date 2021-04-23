@@ -1,71 +1,113 @@
-import java.util.Scanner;
 
+import java.util.*;
 public class C_SCAN {
-    public static void main(String[] args){
 
-        int  h, i, j=0, n, temp, k,tot, p =0, sum=0;
 
-        int[] t = new int[20];
-        int[] d = new int[20];
-        int[] atr = new int[20];
-        Scanner input = new Scanner(System.in);
 
-        System.out.println("enter the no of tracks to be traveresed");
+    static int size = 8;
+    static int disk_size = 200;
 
-        n=input.nextInt();
-        System.out.println("enter the position of head");
+    public static void CSCAN(int arr[], int head)
+    {
+        int seek_count = 0;
+        int distance, cur_track;
 
-        h=input.nextInt();
-        t[0]=0;t[1]=h;
-        System.out.println("enter total tracks");
+        Vector<Integer> left = new Vector<Integer>();
+        Vector<Integer> right = new Vector<Integer>();
 
-        tot=input.nextInt();
-        t[2]=tot-1;
-        System.out.println("enter the tracks");
-        for(i=3;i<=n+2;i++)
 
-        t[i]=input.nextInt();
-        for(i=0;i<=n+2;i++)
-            for(j=0;j<=(n+2)-i-1;j++)
-                if(t[j]>t[j+1])
-                {
-                    temp=t[j];
-                    t[j]=t[j+1];
-                    t[j+1]=temp;
-                }
-        for(i=0;i<=n+2;i++){
-            if(t[i]==h){
-                j=i;
-            break;
-         p=0;
-            }
+        Vector<Integer> seek_sequence = new Vector<Integer>();
+
+        // Appending end values which has
+        // to be visited before reversing
+        // the direction
+        left.add(0);
+        right.add(disk_size - 1);
+
+        // Tracks on the left of the
+        // head will be serviced when
+        // once the head comes back
+        // to the beggining (left end).
+        for (int i = 0; i < size; i++) {
+            if (arr[i] < head)
+                left.add(arr[i]);
+            if (arr[i] > head)
+                right.add(arr[i]);
         }
-        while(t[j]!=tot-1)
-        {
-            atr[p]=t[j];
-            j++;
-            p++;
-        }
-        atr[p]=t[j];
-        p++;
-        i=0;
-        while(p!=(n+3) && t[i]!=t[h])
-        {
-            atr[p]=t[i];
-            i++;
-            p++;
-        }
-        for(j=0;j<n+2;j++)
-        {
-            if(atr[j]>atr[j+1])
-                d[j]=atr[j]-atr[j+1];
-            else
-                d[j]=atr[j+1]-atr[j];
-            sum+=d[j];
-        }
-        System.out.println("total header movements%d"+sum);
-        System.out.println("avg is %f"+(float)sum/n);
 
+        // Sorting left and right vectors
+        Collections.sort(left);
+        Collections.sort(right);
 
+        // First service the requests
+        // on the right side of the
+        // head.
+        for (int i = 0; i < right.size(); i++) {
+            cur_track = right.get(i);
+
+            // Appending current track to seek sequence
+            seek_sequence.add(cur_track);
+
+            // Calculate absolute distance
+            distance = Math.abs(cur_track - head);
+
+            // Increase the total count
+            seek_count += distance;
+
+            // Accessed track is now new head
+            head = cur_track;
+        }
+
+        // Once reached the right end
+        // jump to the beggining.
+        head = 0;
+
+        // adding seek count for head returning from 199 to
+        // 0
+        seek_count += (disk_size - 1);
+
+        // Now service the requests again
+        // which are left.
+        for (int i = 0; i < left.size(); i++) {
+            cur_track = left.get(i);
+
+            // Appending current track to
+            // seek sequence
+            seek_sequence.add(cur_track);
+
+            // Calculate absolute distance
+            distance = Math.abs(cur_track - head);
+
+            // Increase the total count
+            seek_count += distance;
+
+            // Accessed track is now the new head
+            head = cur_track;
+        }
+
+        System.out.println("Total number of seek "
+                + "operations = " + seek_count);
+
+        System.out.println("Seek Sequence is");
+        // Display the output
+        for (int i = 0; i < seek_sequence.size(); i++) {
+            System.out.println(seek_sequence.get(i));
+        }
     }
+
+    // Driver code
+    public static void main(String[] args) throws Exception
+    {
+
+        // Request array
+        int arr[] = { 66, 82, 45, 91, 84, 18, 44, 175 };
+        int head = 50;
+
+        System.out.println("Initial position of head: "
+                + head);
+
+        CSCAN(arr, head);
+    }
+
+
 }
