@@ -1,56 +1,53 @@
 import java.util.Collections;
-import java.util.Scanner;
 import java.util.Vector;
 
 public class Scan {
-    // Java program to demonstrate
-// SCAN Disk Scheduling algorithm
 
 
 
 
-        static int size = 8;
+
+
         static int disk_size = 200;
 
-        static void SCAN(int arr[], int head, String direction)
+        static void SCAN(int input[], int head, String direction)
         {
-            int seek_count = 0;
+            int seek_cou = 0;
             int distance, cur_track;
-            Vector<Integer> left = new Vector<Integer>(),
-                    right = new Vector<Integer>();
+            Vector<Integer> leftmove = new Vector<Integer>(),
+                    rightmove = new Vector<Integer>();
             Vector<Integer> seek_sequence = new Vector<Integer>();
 
             // appending end values
-            // which has to be visited
-            // before reversing the direction
-            if (direction == "left")
-                left.add(0);
-            else if (direction == "right")
-                right.add(disk_size - 1);
 
-            for (int i = 0; i < size; i++)
+            if (direction == "left")
+                leftmove.add(0);
+            else if (direction == "right")
+                rightmove.add(disk_size - 1);
+
+            for (int i = 0; i < 8; i++)
             {
-                if (arr[i] < head)
-                    left.add(arr[i]);
-                if (arr[i] > head)
-                    right.add(arr[i]);
+                if (input[i] < head)
+                    leftmove.add(input[i]);
+                if (input[i] > head)
+                    rightmove.add(input[i]);
             }
 
             // sorting left and right vectors
-            Collections.sort(left);
-            Collections.sort(right);
+            Collections.sort(leftmove);
+            Collections.sort(rightmove);
 
-            // run the while loop two times.
+
             // one by one scanning right
             // and left of the head
-            int run = 2;
-            while (run-- >0)
+            int runLoop = 2;
+            while (runLoop-- >0)
             {
                 if (direction == "left")
                 {
-                    for (int i = left.size() - 1; i >= 0; i--)
+                    for (int i = leftmove.size() - 1; i >= 0; i--)
                     {
-                        cur_track = left.get(i);
+                        cur_track = leftmove.get(i);
 
                         // appending current track to seek sequence
                         seek_sequence.add(cur_track);
@@ -59,7 +56,7 @@ public class Scan {
                         distance = Math.abs(cur_track - head);
 
                         // increase the total count
-                        seek_count += distance;
+                        seek_cou += distance;
 
                         // accessed track is now the new head
                         head = cur_track;
@@ -68,9 +65,9 @@ public class Scan {
                 }
                 else if (direction == "right")
                 {
-                    for (int i = 0; i < right.size(); i++)
+                    for (int i = 0; i < rightmove.size(); i++)
                     {
-                        cur_track = right.get(i);
+                        cur_track = rightmove.get(i);
 
                         // appending current track to seek sequence
                         seek_sequence.add(cur_track);
@@ -79,7 +76,7 @@ public class Scan {
                         distance = Math.abs(cur_track - head);
 
                         // increase the total count
-                        seek_count += distance;
+                        seek_cou += distance;
 
                         // accessed track is now new head
                         head = cur_track;
@@ -89,7 +86,7 @@ public class Scan {
             }
 
             System.out.print("Total number of seek operations = "
-                    + seek_count + "\n");
+                    + seek_cou + "\n");
 
             System.out.print("Seek Sequence is" + "\n");
 
@@ -99,13 +96,12 @@ public class Scan {
             }
         }
 
-        // Driver code
+
         public static void main(String[] args)
         {
 
             // request array
-            int arr[] = { 176, 79, 34, 60,
-                    92, 11, 41, 114 };
+            int arr[] = { 122, 68, 23, 59, 81, 11, 51, 124 };
             int head = 50;
             String direction = "left";
 
@@ -113,6 +109,6 @@ public class Scan {
         }
     }
 
-// This code is contributed by 29AjayKumar
+
 
 

@@ -4,7 +4,7 @@ public class C_SCAN {
 
 
 
-    static int size = 8;
+    //static int size = 8;
     static int disk_size = 200;
 
     public static void CSCAN(int arr[], int head)
@@ -28,7 +28,7 @@ public class C_SCAN {
         // head will be serviced when
         // once the head comes back
         // to the beggining (left end).
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < 8; i++) {
             if (arr[i] < head)
                 left.add(arr[i]);
             if (arr[i] > head)
